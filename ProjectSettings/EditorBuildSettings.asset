@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/1 Command Pattern/Calculator/StandardCalculator_CommandPattern.unity
+    guid: addba4caef431b340b9164957dcd516f
   m_configObjects: {}
