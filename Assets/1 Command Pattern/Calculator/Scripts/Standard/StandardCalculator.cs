@@ -14,8 +14,14 @@ namespace CommandPatterns.Calculator.Standard
         #region System Define Function
         private void OnEnable()
         {
+            InputHandler.InputPass += Onclick_SetValue;
             SetNumber_float = 0;
             SetNumber_Text.text = SetNumber_float.ToString();
+
+        }
+        private void OnDisable()
+        {
+            InputHandler.InputPass -= Onclick_SetValue;
         }
         private void Start()
         {
@@ -39,5 +45,10 @@ namespace CommandPatterns.Calculator.Standard
             //}
         }
         #endregion
+
+        public void Onclick_SetValue(string va)
+        {
+            Debug.Log(va);
+        }
     }
 }
