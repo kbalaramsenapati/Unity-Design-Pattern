@@ -5334,7 +5334,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5361,12 +5361,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 141.7
-  m_fontSizeBase: 141.7
+  m_fontSize: 130
+  m_fontSizeBase: 115
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 72
+  m_fontSizeMax: 130
   m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
@@ -11644,8 +11644,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb8108e5be38ac48b9974e0d9006518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnterNumber_Text: {fileID: 1075661847}
-  FinalNumber_Text: {fileID: 563227419}
+  EnterNumber_Text: {fileID: 563227419}
+  FinalNumber_Text: {fileID: 1075661847}
   SetNumber_float: 0
 --- !u!1 &1358748048
 GameObject:

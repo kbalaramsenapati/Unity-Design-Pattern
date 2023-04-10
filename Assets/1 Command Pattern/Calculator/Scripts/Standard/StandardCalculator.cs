@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 namespace CommandPatterns.Calculator.Standard
 {
     public class StandardCalculator : MonoBehaviour
@@ -10,7 +11,7 @@ namespace CommandPatterns.Calculator.Standard
         #region Decleration
         public TMP_Text EnterNumber_Text;
         public TMP_Text FinalNumber_Text;
-        public float SetNumber_float;
+        public double SetNumber_float;
         #endregion
         #region System Define Function
         private void OnEnable()
