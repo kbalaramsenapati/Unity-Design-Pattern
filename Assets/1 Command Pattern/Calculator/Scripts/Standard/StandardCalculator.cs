@@ -48,6 +48,7 @@ namespace CommandPatterns.Calculator.Standard
 
         public void Onclick_SetValue(string va)
         {
+            //SetNumber_Text.text+=va;
             Debug.Log(va);
         }
     }

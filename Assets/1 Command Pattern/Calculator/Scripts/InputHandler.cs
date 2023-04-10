@@ -7,13 +7,28 @@ public class InputHandler : MonoBehaviour
 {
     #region Decleration
     public static event Action<string> InputPass;
+
+    public bool IsshiftClick_bool;
     #endregion
 
     #region System Define Function
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
+        //Debug.Log(Input.GetKey(KeyCode.RightShift));
+        #region Shift
+        if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
+        {
+            IsshiftClick_bool = false;
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            IsshiftClick_bool = true;
+        }
+        #endregion
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
         {
             InputPass?.Invoke("0");
         }
@@ -53,11 +68,11 @@ public class InputHandler : MonoBehaviour
         {
             InputPass?.Invoke("9");
         }
-        if (/*(((Input.GetKeyDown(KeyCode.LeftShift))||(Input.GetKeyDown(KeyCode.RightShift))) && (Input.GetKeyDown(KeyCode.Plus)))|| */Input.GetKeyDown(KeyCode.KeypadPlus))
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
             InputPass?.Invoke("+");
         }
-        if (/*Input.GetKeyDown(KeyCode.Minus) ||*/ Input.GetKeyDown(KeyCode.KeypadMinus))
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
             InputPass?.Invoke("-");
         }
@@ -69,6 +84,23 @@ public class InputHandler : MonoBehaviour
         {
             InputPass?.Invoke("/");
         }
+        if (IsshiftClick_bool)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                InputPass?.Invoke("%");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            InputPass?.Invoke("BackSpace");
+        }
+        if (Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            InputPass?.Invoke("Enter");
+        }
+
+
         //if (Input.GetKeyDown(KeyCode.Percent))
         //{
         //    InputPass?.Invoke("%");
