@@ -17,13 +17,13 @@ public class InputHandler : MonoBehaviour
     {
         //Debug.Log(Input.GetKey(KeyCode.RightShift));
         #region Shift
-        if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
-        {
-            IsshiftClick_bool = false;
-        }
-        else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             IsshiftClick_bool = true;
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) == false && Input.GetKey(KeyCode.RightShift) == false)
+        {
+            IsshiftClick_bool = false;
         }
         #endregion
 
@@ -32,11 +32,11 @@ public class InputHandler : MonoBehaviour
         {
             InputPass?.Invoke("0");
         }
-        if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             InputPass?.Invoke("1");
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
             InputPass?.Invoke("2");
         }
@@ -48,7 +48,7 @@ public class InputHandler : MonoBehaviour
         {
             InputPass?.Invoke("4");
         }
-        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
+        if ((Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))&& !IsshiftClick_bool)
         {
             InputPass?.Invoke("5");
         }
@@ -80,22 +80,23 @@ public class InputHandler : MonoBehaviour
         {
             InputPass?.Invoke("*");
         }
-        if (Input.GetKeyDown(KeyCode.KeypadDivide))
+        if (Input.GetKeyDown(KeyCode.Alpha8) && IsshiftClick_bool)
+        {
+            InputPass?.Invoke("*");
+        }
+        if (Input.GetKeyDown(KeyCode.KeypadDivide) || Input.GetKeyDown(KeyCode.Slash))
         {
             InputPass?.Invoke("/");
         }
-        if (IsshiftClick_bool)
+        if (Input.GetKeyDown(KeyCode.Alpha5) && IsshiftClick_bool)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                InputPass?.Invoke("%");
-            }
+            InputPass?.Invoke("%");
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             InputPass?.Invoke("BackSpace");
         }
-        if (Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             InputPass?.Invoke("Enter");
         }
