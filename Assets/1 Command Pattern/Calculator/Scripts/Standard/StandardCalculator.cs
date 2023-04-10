@@ -8,7 +8,8 @@ namespace CommandPatterns.Calculator.Standard
     public class StandardCalculator : MonoBehaviour
     {
         #region Decleration
-        public TMP_Text SetNumber_Text;
+        public TMP_Text EnterNumber_Text;
+        public TMP_Text FinalNumber_Text;
         public float SetNumber_float;
         #endregion
         #region System Define Function
@@ -16,7 +17,7 @@ namespace CommandPatterns.Calculator.Standard
         {
             InputHandler.InputPass += Onclick_SetValue;
             SetNumber_float = 0;
-            SetNumber_Text.text = SetNumber_float.ToString();
+            EnterNumber_Text.text = SetNumber_float.ToString();
 
         }
         private void OnDisable()
