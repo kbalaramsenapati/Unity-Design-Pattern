@@ -176,7 +176,6 @@ public class InputHandler : MonoBehaviour
     {
         InputPass?.Invoke("BackSpace");
     }
-
     public void Onclick_MC()
     {
         InputPass?.Invoke("MC");
