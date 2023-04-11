@@ -69,7 +69,7 @@ namespace CommandPatterns.Calculator.Standard
         public void Onclick_SetValue(string val)
         {
             //SetNumber_Text.text+=va;
-            Debug.Log(val);
+            //Debug.Log(val);
             double a = Number1_double;
             double b = Number2_double;
             Invoker invoker = new Invoker();
