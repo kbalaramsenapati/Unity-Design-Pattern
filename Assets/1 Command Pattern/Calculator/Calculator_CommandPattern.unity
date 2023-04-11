@@ -5288,7 +5288,7 @@ GameObject:
   - component: {fileID: 563227420}
   - component: {fileID: 563227419}
   m_Layer: 5
-  m_Name: EnterNumber_Text (TMP)
+  m_Name: DownNumber_Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9340,7 +9340,7 @@ GameObject:
   - component: {fileID: 1075661848}
   - component: {fileID: 1075661847}
   m_Layer: 5
-  m_Name: FinalNumber_Text (TMP)
+  m_Name: UplNumber_Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11644,9 +11644,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb8108e5be38ac48b9974e0d9006518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnterNumber_Text: {fileID: 563227419}
-  FinalNumber_Text: {fileID: 1075661847}
-  SetNumber_float: 0
+  Result_double: 0
+  Number1_double: 0
+  Number2_double: 0
+  Operator_string: 
+  IsSecondNumber_bool: 0
+  UpNumberPlace_string: 
+  UpNumberPlace_Text: {fileID: 1075661847}
+  DownNumberPlace_string: 
+  DownNumberPlace_Text: {fileID: 563227419}
 --- !u!1 &1358748048
 GameObject:
   m_ObjectHideFlags: 0

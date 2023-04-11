@@ -3,27 +3,31 @@ namespace CommandPatterns.Calculator
 {
     public class Calculator
     {
-        float _a, _b;
-        public Calculator(float a, float b)
+        double _a, _b;
+        public Calculator(double a, double b)
         {
             _a = a;
             _b = b;
         }
-        public float Add()
+        public double Add()
         {
             return _a + _b;
         }
-        public float Sub()
+        public double Sub()
         {
             return _a - _b;
         }
-        public float Multi()
+        public double Multi()
         {
             return _a + _b;
         }
-        public float Divi()
+        public double Divi()
         {
             return _a / _b;
+        }
+        public double Percent()
+        {
+            return _b / 100;
         }
     }
 }

@@ -2,11 +2,11 @@ namespace CommandPatterns.Calculator
 {
     public interface ICommand
     {
-        float Execute();
+        double Execute();
     }
     public class Invoker
     {
-        public float ExecuteCommand(ICommand command)
+        public double ExecuteCommand(ICommand command)
         {
             return command.Execute();
         }
@@ -23,7 +23,7 @@ namespace CommandPatterns.Calculator
             _calculator = calculator;
         }
 
-        public float Execute()
+        public double Execute()
         {
             return _calculator.Add();
         }
@@ -37,7 +37,7 @@ namespace CommandPatterns.Calculator
             _calculator = calculator;
         }
 
-        public float Execute()
+        public double Execute()
         {
             return _calculator.Sub();
         }
@@ -51,7 +51,7 @@ namespace CommandPatterns.Calculator
             _calculator = calculator;
         }
 
-        public float Execute()
+        public double Execute()
         {
             return _calculator.Multi();
         }
@@ -65,9 +65,23 @@ namespace CommandPatterns.Calculator
             _calculator = calculator;
         }
 
-        public float Execute()
+        public double Execute()
         {
             return _calculator.Divi();
+        }
+    }
+    public class PercentCommand : ICommand
+    {
+        private Calculator _calculator;
+
+        public PercentCommand(Calculator calculator)
+        {
+            _calculator = calculator;
+        }
+
+        public double Execute()
+        {
+            return _calculator.Percent();
         }
     }
 }
