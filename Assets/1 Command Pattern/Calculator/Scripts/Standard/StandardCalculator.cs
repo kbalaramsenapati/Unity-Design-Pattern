@@ -69,7 +69,7 @@ namespace CommandPatterns.Calculator.Standard
         public void Onclick_SetValue(string val)
         {
             //SetNumber_Text.text+=va;
-            //Debug.Log(va);
+            Debug.Log(val);
             double a = Number1_double;
             double b = Number2_double;
             Invoker invoker = new Invoker();
@@ -80,43 +80,43 @@ namespace CommandPatterns.Calculator.Standard
             switch (val)
             {
                 case "0":
-                    DownNumberPlace_string = CheckNumber(int.Parse(val));
+                    DownNumberPlace_string = CheckNumber(double.Parse(val));
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "1":
-                    DownNumberPlace_string = CheckNumber(int.Parse(val));
+                    DownNumberPlace_string = CheckNumber(double.Parse(val));
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "2":
-                    DownNumberPlace_string = CheckNumber(int.Parse(val));
+                    DownNumberPlace_string = CheckNumber(double.Parse(val));
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "3":
-                    DownNumberPlace_string = CheckNumber(int.Parse(val));
+                    DownNumberPlace_string = CheckNumber(double.Parse(val));
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "4":
-                    DownNumberPlace_string = CheckNumber(int.Parse(val));
+                    DownNumberPlace_string = CheckNumber(double.Parse(val));
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "5":
-                    DownNumberPlace_string = CheckNumber(int.Parse(val));
+                    DownNumberPlace_string = CheckNumber(double.Parse(val));
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "6":
-                    DownNumberPlace_string = CheckNumber(int.Parse(val));
+                    DownNumberPlace_string = CheckNumber(double.Parse(val));
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "7":
-                    DownNumberPlace_string = CheckNumber(int.Parse(val));
+                    DownNumberPlace_string = CheckNumber(double.Parse(val));
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "8":
-                    DownNumberPlace_string = CheckNumber(int.Parse(val));
+                    DownNumberPlace_string = CheckNumber(double.Parse(val));
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "9":
-                    DownNumberPlace_string = CheckNumber(int.Parse(val));
+                    DownNumberPlace_string = CheckNumber(double.Parse(val));
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "-":
@@ -174,18 +174,41 @@ namespace CommandPatterns.Calculator.Standard
                     double tempnum1 = Number1_double;
                     Number1_double = invoker.ExecuteCommand(percentCommand);
                     Number2_double = 1;
-                    UpNumberPlace_string = tempnum1.ToString() + " + "+ Number1_double.ToString();
+                    UpNumberPlace_string = tempnum1.ToString() + " + " + Number1_double.ToString();
                     UpNumberPlace_Text.text = UpNumberPlace_string;
 
                     DownNumberPlace_string = Number1_double.ToString();
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
-                    break;
                 case ".":
+                    //Debug.Log(".1");
+                    DownNumberPlace_string = CheckPeriod();
+                    DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "Enter":
                     break;
                 case "BackSpace":
+                    if(DownNumberPlace_string=="0")
+                    {
+                        return;
+                    }
+
+                    DownNumberPlace_string = DownNumberPlace_string.Remove(DownNumberPlace_string.Length - 1);
+
+                    if(DownNumberPlace_string.Length == 0)
+                    {
+                        DownNumberPlace_string = "0";
+                    }
+
+                    DownNumberPlace_Text.text = DownNumberPlace_string;
+                    if (IsSecondNumber_bool)
+                    {
+                        Number2_double = double.Parse(DownNumberPlace_string);
+                    }
+                    else
+                    {
+                        Number1_double = double.Parse(DownNumberPlace_string);
+                    }
                     break;
                 case "MC":
                     break;
@@ -197,17 +220,26 @@ namespace CommandPatterns.Calculator.Standard
                     break;
                 case "MS":
                     break;
+                case "C":
+                    Number1_double = 0;
+                    Number2_double = 0;
+                    UpNumberPlace_string = "";
+                    UpNumberPlace_Text.text = UpNumberPlace_string;
+                    DownNumberPlace_string = "0";
+                    DownNumberPlace_Text.text = DownNumberPlace_string;
+                    break;
+
             }
         }
 
         #endregion
 
-        string CheckNumber(int val)
+        string CheckNumber(double val)
         {
             double TempNum = 0;
             if (IsSecondNumber_bool)
             {
-                if (Number2_double == 0)
+                if (DownNumberPlace_string == "0")
                 {
                     //TempNum = val.ToString();
                     TempNum = val;
@@ -215,13 +247,13 @@ namespace CommandPatterns.Calculator.Standard
                 else
                 {
                     string tempnum1 = "";
-                    if (Number2_double.ToString().Length < 15)
+                    if (DownNumberPlace_string.Length < 15)
                     {
-                        tempnum1 = Number2_double.ToString() + val.ToString();
+                        tempnum1 = DownNumberPlace_string + val;
                     }
                     else
                     {
-                        tempnum1 = Number2_double.ToString();
+                        tempnum1 = DownNumberPlace_string;
                     }
                     TempNum = double.Parse(tempnum1);
                 }
@@ -229,20 +261,20 @@ namespace CommandPatterns.Calculator.Standard
             }
             else
             {
-                if (Number1_double == 0)
+                if (DownNumberPlace_string == "0")
                 {
                     TempNum = val;
                 }
                 else
                 {
                     string tempnum1 = "";
-                    if (Number1_double.ToString().Length < 15)
+                    if (DownNumberPlace_string.Length < 15)
                     {
-                        tempnum1 = Number1_double.ToString() + val.ToString();
+                        tempnum1 = DownNumberPlace_string + val.ToString();
                     }
                     else
                     {
-                        tempnum1 = Number1_double.ToString();
+                        tempnum1 = DownNumberPlace_string;
                     }
                     TempNum = double.Parse(tempnum1);
                 }
@@ -250,18 +282,36 @@ namespace CommandPatterns.Calculator.Standard
             }
             return TempNum.ToString();
         }
-        //string CheckOperator(string val)
-        //{
-        //    string TempNum = "0";
-        //    Calculator()
-        //    //if(val == "%")
-        //    //{
+        string CheckPeriod()
+        {
+            string tempNum = "";
+            if (IsSecondNumber_bool)
+            {
+                string tempstring = Number2_double.ToString();
+                if (!tempstring.Contains("."))
+                {
+                    tempstring = Number2_double.ToString() + ".";
+                    Number2_double = double.Parse(tempstring);
 
-        //    //}
-        //    //else
-        //    //{
+                    tempNum = Number2_double.ToString();
 
-        //    //}
-        //}
+                }
+            }
+            else
+            {
+                string tempstring = Number1_double.ToString();
+                //Debug.Log(".2");
+                if (!tempstring.Contains("."))
+                {
+                    Debug.Log(Number1_double);
+                    tempstring = Number1_double.ToString() + ".";
+                    Number1_double = double.Parse(tempstring);
+
+                    tempNum = tempstring.ToString();
+
+                }
+            }
+            return tempNum;
+        }
     }
 }
