@@ -39,6 +39,8 @@ namespace CommandPatterns.Calculator.Standard
 
         public TMP_Text Sqrt_Text;
 
+        public List<double> number_double = new List<double>();
+
         #endregion
         #region System Define Function
         private void OnEnable()
@@ -276,14 +278,48 @@ namespace CommandPatterns.Calculator.Standard
                     }
                     break;
                 case "MC":
+                    number_double.Clear();
+                    MC_button.interactable = false;
+                    MR_button.interactable = false;
+                    MDown_button.interactable = false;
                     break;
                 case "MR":
+                    DownNumberPlace_string = number_double[number_double.Count - 1].ToString();
+                    DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "M+":
+                    double tempMPluse1 = double.Parse(DownNumberPlace_string);
+                    double tempMPluse2 = 0;
+                    if(number_double.Count > 0)
+                    {
+                        tempMPluse2 = number_double[number_double.Count - 1];
+                    }
+                    double tempMPluse3 = tempMPluse1 + tempMPluse2;
+                    number_double.Remove(number_double.Count-1);
+                    number_double.Add(tempMPluse3);
+                    MC_button.interactable = true;
+                    MR_button.interactable = true;
+                    MDown_button.interactable = true;
                     break;
                 case "M-":
+                    double tempMPluse11 = double.Parse(DownNumberPlace_string);
+                    double tempMPluse21 = 0;
+                    if (number_double.Count > 0)
+                    {
+                        tempMPluse2 = number_double[number_double.Count - 1];
+                    }
+                    double tempMPluse31 = tempMPluse11 - tempMPluse21;
+                    number_double.Remove(number_double.Count - 1);
+                    number_double.Add(tempMPluse31);
+                    MC_button.interactable = true;
+                    MR_button.interactable = true;
+                    MDown_button.interactable = true;
                     break;
                 case "MS":
+                    number_double.Add(double.Parse(DownNumberPlace_string));
+                    MC_button.interactable = true;
+                    MR_button.interactable = true;
+                    MDown_button.interactable = true;
                     break;
                 case "C":
                     Number1_double = 0;
