@@ -10,8 +10,17 @@ namespace CommandPatterns.Calculator.Standard
 {
     public class StandardCalculator : MonoBehaviour
     {
-        #region Decleration
+        [Serializable]
+        public class numberList
+        {
+            public double number_double;
+            public GameObject History_button;
+            public GameObject MC_Button;
+            public GameObject MPluse_Button;
+            public GameObject MMinuse_Button;
+        }
 
+        #region Decleration
         public double Result_double;
 
         public double Number1_double;
@@ -39,6 +48,7 @@ namespace CommandPatterns.Calculator.Standard
 
         public TMP_Text Sqrt_Text;
 
+        //public List<numberList> Numberlist=new List<numberList>();
         public List<double> number_double = new List<double>();
 
         #endregion
@@ -284,7 +294,8 @@ namespace CommandPatterns.Calculator.Standard
                     MDown_button.interactable = false;
                     break;
                 case "MR":
-                    DownNumberPlace_string = number_double[number_double.Count - 1].ToString();
+                    //DownNumberPlace_string = Numberlist[Numberlist.Count - 1].number_double.ToString();
+                    //DownNumberPlace_string = number_double[number_double.Count - 1].ToString();
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "M+":
@@ -292,10 +303,14 @@ namespace CommandPatterns.Calculator.Standard
                     double tempMPluse2 = 0;
                     if(number_double.Count > 0)
                     {
+                        //tempMPluse2 = Numberlist[Numberlist.Count - 1].number_double;
                         tempMPluse2 = number_double[number_double.Count - 1];
                     }
                     double tempMPluse3 = tempMPluse1 + tempMPluse2;
-                    number_double.Remove(number_double.Count-1);
+
+                    //Numberlist.;
+                    number_double.Remove(number_double.Count - 1);
+
                     number_double.Add(tempMPluse3);
                     MC_button.interactable = true;
                     MR_button.interactable = true;
@@ -310,6 +325,7 @@ namespace CommandPatterns.Calculator.Standard
                     }
                     double tempMPluse31 = tempMPluse11 - tempMPluse21;
                     number_double.Remove(number_double.Count - 1);
+
                     number_double.Add(tempMPluse31);
                     MC_button.interactable = true;
                     MR_button.interactable = true;
@@ -317,6 +333,7 @@ namespace CommandPatterns.Calculator.Standard
                     break;
                 case "MS":
                     number_double.Add(double.Parse(DownNumberPlace_string));
+
                     MC_button.interactable = true;
                     MR_button.interactable = true;
                     MDown_button.interactable = true;
