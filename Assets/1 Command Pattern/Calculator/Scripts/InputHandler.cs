@@ -197,6 +197,11 @@ public class InputHandler : MonoBehaviour
     {
         InputPass?.Invoke("M-");
     }
+    public void Onclick_MDown()
+    {
+        InputPass?.Invoke("MDown");
+    }
+
     public void Onclick_CE()
     {
         InputPass?.Invoke("CE");

@@ -27,6 +27,16 @@ namespace CommandPatterns.Calculator.Standard
         public string DownNumberPlace_string;
         public TMP_Text DownNumberPlace_Text;
 
+        public enum Operator_enum {none,add,sub,multi,divi };
+        public Operator_enum operator_Enum;
+
+        public Button MC_button;
+        public Button MR_button;
+        public Button MPluse_button;
+        public Button MMinuse_button;
+        public Button MS_button;
+        public Button MDown_button;
+
         #endregion
         #region System Define Function
         private void OnEnable()
@@ -36,6 +46,10 @@ namespace CommandPatterns.Calculator.Standard
 
             DownNumberPlace_string = "0";
             DownNumberPlace_Text.text = DownNumberPlace_string;
+
+            MC_button.interactable = false;
+            MR_button.interactable = false;
+            MDown_button.interactable = false;
         }
         private void OnDisable()
         {
@@ -120,6 +134,7 @@ namespace CommandPatterns.Calculator.Standard
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "-":
+                    operator_Enum = Operator_enum.sub;
                     IsSecondNumber_bool = true;
 
                     SubCommand substractCommand = new SubCommand(calculator);
@@ -132,6 +147,7 @@ namespace CommandPatterns.Calculator.Standard
                     Number2_double = 0;
                     break;
                 case "+":
+                    operator_Enum = Operator_enum.add;
                     IsSecondNumber_bool = true;
 
                     AddCommand addCommand = new AddCommand(calculator);
@@ -144,11 +160,12 @@ namespace CommandPatterns.Calculator.Standard
                     Number2_double = 0;
                     break;
                 case "*":
+                    operator_Enum = Operator_enum.multi;
                     IsSecondNumber_bool = true;
 
                     MultiCommand multiCommand = new MultiCommand(calculator);
                     Number1_double = invoker.ExecuteCommand(multiCommand);
-                    UpNumberPlace_string = Number1_double.ToString() + " + ";
+                    UpNumberPlace_string = Number1_double.ToString() + " * ";
                     UpNumberPlace_Text.text = UpNumberPlace_string;
 
                     DownNumberPlace_string = Number1_double.ToString();
@@ -156,11 +173,12 @@ namespace CommandPatterns.Calculator.Standard
                     Number2_double = 1;
                     break;
                 case "/":
+                    operator_Enum = Operator_enum.divi;
                     IsSecondNumber_bool = true;
 
                     DiviCommand diviCommand = new DiviCommand(calculator);
                     Number1_double = invoker.ExecuteCommand(diviCommand);
-                    UpNumberPlace_string = Number1_double.ToString() + " + ";
+                    UpNumberPlace_string = Number1_double.ToString() + " / ";
                     UpNumberPlace_Text.text = UpNumberPlace_string;
 
                     DownNumberPlace_string = Number1_double.ToString();
@@ -186,6 +204,51 @@ namespace CommandPatterns.Calculator.Standard
                     DownNumberPlace_Text.text = DownNumberPlace_string;
                     break;
                 case "Enter":
+                    switch(operator_Enum)
+                    {
+                        case Operator_enum.add:
+                            AddCommand addCommand1 = new AddCommand(calculator);
+                            double add = Number1_double;
+                            Number1_double = invoker.ExecuteCommand(addCommand1);
+                            UpNumberPlace_string = add.ToString() + " + " + Number2_double.ToString() + " = ";
+                            UpNumberPlace_Text.text = UpNumberPlace_string;
+
+                            DownNumberPlace_string = Number1_double.ToString();
+                            DownNumberPlace_Text.text = DownNumberPlace_string;
+                            break;
+                        case Operator_enum.sub:
+                            SubCommand substractCommand1 = new SubCommand(calculator);
+                            double sub = Number1_double;
+                            Number1_double = invoker.ExecuteCommand(substractCommand1);
+                            UpNumberPlace_string = sub.ToString() + " - " + Number2_double.ToString() + " = ";
+                            UpNumberPlace_Text.text = UpNumberPlace_string;
+
+                            DownNumberPlace_string = Number1_double.ToString();
+                            DownNumberPlace_Text.text = DownNumberPlace_string;
+                            break;
+                        case Operator_enum.multi:
+                            MultiCommand multiCommand1 = new MultiCommand(calculator);
+                            double mul = Number1_double;
+                            Number1_double = invoker.ExecuteCommand(multiCommand1);
+                            UpNumberPlace_string = mul.ToString() + " * " + Number2_double.ToString() + " = ";
+                            UpNumberPlace_Text.text = UpNumberPlace_string;
+
+                            DownNumberPlace_string = Number1_double.ToString();
+                            DownNumberPlace_Text.text = DownNumberPlace_string;
+
+                            break;
+                        case Operator_enum.divi:
+                            DiviCommand diviCommand1 = new DiviCommand(calculator);
+                            double div = Number1_double;
+                            Number1_double = invoker.ExecuteCommand(diviCommand1);
+                            UpNumberPlace_string = div.ToString() + " / " + Number2_double.ToString() + " = ";
+                            UpNumberPlace_Text.text = UpNumberPlace_string;
+
+                            DownNumberPlace_string = Number1_double.ToString();
+                            DownNumberPlace_Text.text = DownNumberPlace_string;
+
+                            break;
+                    }
                     break;
                 case "BackSpace":
                     if(DownNumberPlace_string=="0")
@@ -227,6 +290,9 @@ namespace CommandPatterns.Calculator.Standard
                     UpNumberPlace_Text.text = UpNumberPlace_string;
                     DownNumberPlace_string = "0";
                     DownNumberPlace_Text.text = DownNumberPlace_string;
+
+                    operator_Enum = Operator_enum.none;
+
                     break;
 
             }
@@ -239,7 +305,7 @@ namespace CommandPatterns.Calculator.Standard
             double TempNum = 0;
             if (IsSecondNumber_bool)
             {
-                if (DownNumberPlace_string == "0")
+                if (DownNumberPlace_string == "0" || Number2_double==0)
                 {
                     //TempNum = val.ToString();
                     TempNum = val;
