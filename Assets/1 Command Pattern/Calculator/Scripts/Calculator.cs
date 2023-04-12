@@ -1,3 +1,5 @@
+using System.Collections;
+using UnityEngine;
 
 namespace CommandPatterns.Calculator
 {
@@ -8,6 +10,10 @@ namespace CommandPatterns.Calculator
         {
             _a = a;
             _b = b;
+        }
+        public Calculator(double a)
+        {
+            _a = a;
         }
         public double Add()
         {
@@ -29,5 +35,22 @@ namespace CommandPatterns.Calculator
         {
             return _b / 100;
         }
+        public double OneDevidedx()
+        {
+            return 1 / _a;
+        }
+        public double xSqure()
+        {
+            return _a * _a;
+        }
+        public double SqrtX()
+        {
+            return Mathf.Sqrt((float)_a);
+        }
+        public double PluseMinuse()
+        {
+            return -_a;
+        }
+
     }
 }

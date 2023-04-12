@@ -84,5 +84,61 @@ namespace CommandPatterns.Calculator
             return _calculator.Percent();
         }
     }
+    public class OneDevidedxCommand : ICommand
+    {
+        private Calculator _calculator;
+
+        public OneDevidedxCommand(Calculator calculator)
+        {
+            _calculator = calculator;
+        }
+
+        public double Execute()
+        {
+            return _calculator.OneDevidedx();
+        }
+    }
+    public class xSqure : ICommand
+    {
+        private Calculator _calculator;
+
+        public xSqure(Calculator calculator)
+        {
+            _calculator = calculator;
+        }
+
+        public double Execute()
+        {
+            return _calculator.xSqure();
+        }
+    }
+    public class Sqrtx : ICommand
+    {
+        private Calculator _calculator;
+
+        public Sqrtx(Calculator calculator)
+        {
+            _calculator = calculator;
+        }
+
+        public double Execute()
+        {
+            return _calculator.SqrtX();
+        }
+    }
+    public class PluseMinuse : ICommand
+    {
+        private Calculator _calculator;
+
+        public PluseMinuse(Calculator calculator)
+        {
+            _calculator = calculator;
+        }
+
+        public double Execute()
+        {
+            return _calculator.PluseMinuse();
+        }
+    }
 }
 

@@ -210,7 +210,7 @@ public class InputHandler : MonoBehaviour
     {
         InputPass?.Invoke("C");
     }
-    public void Onclick_1DividedX()
+    public void Onclick_OneDividedX()
     {
         InputPass?.Invoke("1/x");
     }

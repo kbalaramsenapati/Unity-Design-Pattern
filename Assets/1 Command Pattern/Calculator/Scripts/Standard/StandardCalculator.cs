@@ -37,6 +37,8 @@ namespace CommandPatterns.Calculator.Standard
         public Button MS_button;
         public Button MDown_button;
 
+        public TMP_Text Sqrt_Text;
+
         #endregion
         #region System Define Function
         private void OnEnable()
@@ -292,9 +294,70 @@ namespace CommandPatterns.Calculator.Standard
                     DownNumberPlace_Text.text = DownNumberPlace_string;
 
                     operator_Enum = Operator_enum.none;
-
                     break;
+                case "CE":
+                    break;
+                case "1/x":
+                    double divtext = double.Parse(DownNumberPlace_string);
+                    a = divtext;
+                    calculator = new Calculator(a);
 
+
+                    OneDevidedxCommand oneDevidedxCommand = new OneDevidedxCommand(calculator);
+                    double tempdivx = Number1_double;
+                    Number1_double = invoker.ExecuteCommand(oneDevidedxCommand);
+                    UpNumberPlace_string =  "1/"+ tempdivx.ToString();
+                    UpNumberPlace_Text.text = UpNumberPlace_string;
+
+                    DownNumberPlace_string = Number1_double.ToString();
+                    DownNumberPlace_Text.text = DownNumberPlace_string;
+                    break;
+                case "x^2":
+                    double Squrextext = double.Parse(DownNumberPlace_string);
+                    a = Squrextext;
+                    calculator = new Calculator(a);
+
+
+                    xSqure xSqureCommand = new xSqure(calculator);
+                    double tempsqurex = Number1_double;
+                    Number1_double = invoker.ExecuteCommand(xSqureCommand);
+                    UpNumberPlace_string = "Sqr(" + tempsqurex.ToString()+")";
+                    UpNumberPlace_Text.text = UpNumberPlace_string;
+
+                    DownNumberPlace_string = Number1_double.ToString();
+                    DownNumberPlace_Text.text = DownNumberPlace_string;
+                    break;
+                case "sqrt(x)":
+                    double Sqrtxtext = double.Parse(DownNumberPlace_string);
+                    a = Sqrtxtext;
+                    calculator = new Calculator(a);
+
+
+                    Sqrtx sqrtxCommand = new Sqrtx(calculator);
+                    double tempsqrtx = Number1_double;
+                    Number1_double = invoker.ExecuteCommand(sqrtxCommand);
+                    //UpNumberPlace_string = "?(" + tempsqrtx.ToString() + ")";
+                    UpNumberPlace_string = Sqrt_Text.text+"(" + tempsqrtx.ToString() + ")";
+                    UpNumberPlace_Text.text = UpNumberPlace_string;
+
+                    DownNumberPlace_string = Number1_double.ToString();
+                    DownNumberPlace_Text.text = DownNumberPlace_string;
+                    break;
+                case "+/-":
+                    double pluseminusetext = double.Parse(DownNumberPlace_string);
+                    a = pluseminusetext;
+                    calculator = new Calculator(a);
+
+
+                    PluseMinuse pluseMinuseCommand = new PluseMinuse(calculator);
+                    //double temppluseMinuse = Number1_double;
+                    Number1_double = invoker.ExecuteCommand(pluseMinuseCommand);
+                    UpNumberPlace_string = "negate("+Number1_double.ToString()+")";
+                    UpNumberPlace_Text.text = UpNumberPlace_string;
+
+                    DownNumberPlace_string = Number1_double.ToString();
+                    DownNumberPlace_Text.text = DownNumberPlace_string;
+                    break;
             }
         }
 
@@ -379,5 +442,6 @@ namespace CommandPatterns.Calculator.Standard
             }
             return tempNum;
         }
+
     }
 }
